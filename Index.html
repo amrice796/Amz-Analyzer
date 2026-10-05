@@ -1,1 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111827">
 
+    <title>AMZ Analyzer</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div>
+        <div class="brand">AMZ ANALYZER</div>
+        <div class="subtitle">Amazon Sourcing Assistant</div>
+    </div>
+
+    <button class="settings-button" onclick="openSettings()">
+        ⚙️
+    </button>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- SEARCH -->
+
+    <section class="card search-card">
+
+        <div class="mode-selector">
+
+            <button class="mode active"
+                    onclick="setMode('Retail Arbitrage', this)">
+                Retail
+            </button>
+
+            <button class="mode"
+                    onclick="setMode('Online Arbitrage', this)">
+                Online
+            </button>
+
+            <button class="mode"
+                    onclick="setMode('Wholesale', this)">
+                Wholesale
+            </button>
+
+        </div>
+
+
+        <label for="productSearch">
+            ASIN, UPC, or Amazon URL
+        </label>
+
+        <div class="search-row">
+
+            <input
+                id="productSearch"
+                type="text"
+                placeholder="Enter ASIN, UPC, or Amazon URL"
+            >
+
+            <button
+                class="primary-button"
+                onclick="analyzeProduct()">
+                Analyze
+            </button>
+
+        </div>
+
+
+        <button
+            class="demo-button"
+            onclick="loadDemoProduct()">
+
+            Load Demo Product
+
+        </button>
+
+
+        <div id="dataStatus" class="status">
+
+            Data source: Local calculator
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PRODUCT -->
+
+    <section class="card">
+
+        <div class="product-header">
+
+            <div class="product-image">
+                📦
+            </div>
+
+            <div>
+
+                <div
+                    id="productName"
+                    class="product-name">
+
+                    No product loaded
+
+                </div>
+
+                <div
+                    id="productASIN"
+                    class="muted">
+
+                    Enter an ASIN, UPC, or Amazon URL
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <span>Buy Box</span>
+
+                <strong id="buyBox">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>BSR</span>
+
+                <strong id="bsr">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>FBA Offers</span>
+
+                <strong id="fbaOffers">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span>FBM Offers</span>
+
+                <strong id="fbmOffers">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SOURCING COST -->
+
+    <section class="card">
+
+        <div class="section-title">
+            Your Sourcing Numbers
+        </div>
+
+
+        <div class="input-grid">
+
+            <div>
+
+                <label>
+                    Buy Cost
+                </label>
+
+                <input
+                    id="buyCost"
+                    type="number"
+                    step="0.01"
+                    value="20">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Selling Price
+                </label>
+
+                <input
+                    id="sellingPrice"
+                    type="number"
+                    step="0.01"
+                    value="39.99">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Shipping
+                </label>
+
+                <input
+                    id="shipping"
+                    type="number"
+                    step="0.01"
+                    value="0">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Prep / Misc.
+                </label>
+
+                <input
+                    id="prep"
+                    type="number"
+                    step="0.01"
+                    value="1">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- AMAZON FEES -->
+
+    <section class="card">
+
+        <div class="section-title">
+            Amazon Fees
+        </div>
+
+
+        <div class="input-grid">
+
+            <div>
+
+                <label>
+                    Referral Fee %
+                </label>
+
+                <input
+                    id="referralFee"
+                    type="number"
+                    step="0.1"
+                    value="15">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    FBA Fee
+                </label>
+
+                <input
+                    id="fbaFee"
+                    type="number"
+                    step="0.01"
+                    value="5.40">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Other Fees
+                </label>
+
+                <input
+                    id="otherFees"
+                    type="number"
+                    step="0.01"
+                    value="0">
+
+            </div>
+
+        </div>
+
+
+        <p class="note">
+
+            These are temporary estimates. We will replace them
+            with Amazon's actual fee data when the API is connected.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- RESULT -->
+
+    <section class="result-card">
+
+        <div class="result-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    DECISION
+                </div>
+
+                <div
+                    id="decision"
+                    class="decision buy">
+
+                    BUY
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="dealScore"
+                class="deal-score">
+
+                0
+
+            </div>
+
+        </div>
+
+
+
+        <div class="money-grid">
+
+            <div>
+
+                <span>
+                    Profit / Unit
+                </span>
+
+                <strong id="profit">
+                    $0.00
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    ROI
+                </span>
+
+                <strong id="roi">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Margin
+                </span>
+
+                <strong id="margin">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Max Buy Cost
+                </span>
+
+                <strong id="maxBuy">
+                    $0.00
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div
+            id="reasons"
+            class="reasons">
+
+        </div>
+
+
+
+        <button
+            class="save-button"
+            onclick="saveProduct()">
+
+            ⭐ Save Product
+
+        </button>
+
+    </section>
+
+
+
+    <!-- SOURCING RULES -->
+
+    <section class="card">
+
+        <div class="section-title">
+            Your Sourcing Rules
+        </div>
+
+
+        <div class="input-grid">
+
+            <div>
+
+                <label>
+                    Minimum Profit
+                </label>
+
+                <input
+                    id="minimumProfit"
+                    type="number"
+                    step="0.01"
+                    value="5">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Minimum ROI %
+                </label>
+
+                <input
+                    id="minimumROI"
+                    type="number"
+                    step="1"
+                    value="30">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Maximum BSR
+                </label>
+
+                <input
+                    id="maximumBSR"
+                    type="number"
+                    value="100000">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SAVED PRODUCTS -->
+
+    <section class="card">
+
+        <div class="section-title">
+            Saved Products
+        </div>
+
+
+        <div
+            id="savedProducts"
+            class="saved-products">
+
+            <div class="muted">
+                No saved products yet.
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- BOTTOM NAVIGATION -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-button active">
+
+        🏠
+        <span>
+            Analyze
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-button"
+        onclick="scrollToSaved()">
+
+        ⭐
+        <span>
+            Saved
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-button"
+        onclick="openSettings()">
+
+        ⚙️
+        <span>
+            Settings
+        </span>
+
+    </button>
+
+</nav>
+
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
