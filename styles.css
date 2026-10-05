@@ -1,1 +1,784 @@
+* {
+    box-sizing: border-box;
+}
 
+html {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: #f3f4f6;
+    color: #111827;
+}
+
+body {
+    margin: 0;
+
+    padding-bottom: 90px;
+
+    background: #f3f4f6;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        14px
+        16px;
+
+    background: #111827;
+
+    color: white;
+
+    box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+.brand {
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.subtitle {
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+    color: #cbd5e1;
+}
+
+
+.settings-button {
+
+    border: none;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 8px;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+
+    width: 100%;
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    padding: 12px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+
+    margin-bottom: 12px;
+
+    padding: 15px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 1px 4px
+        rgba(0,0,0,0.05);
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.mode-selector {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 6px;
+
+    margin-bottom: 14px;
+}
+
+
+.mode {
+
+    padding: 10px 5px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    background: #f9fafb;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.mode.active {
+
+    background: #111827;
+
+    border-color: #111827;
+
+    color: white;
+}
+
+
+label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #4b5563;
+}
+
+
+.search-row {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.search-row input {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+input {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border:
+        1px solid
+        #d1d5db;
+
+    border-radius: 10px;
+
+    background: white;
+
+    font-size: 16px;
+
+    color: #111827;
+
+    outline: none;
+}
+
+
+input:focus {
+
+    border-color: #111827;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(17,24,39,0.10);
+}
+
+
+.primary-button {
+
+    width: 100px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #111827;
+
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+.demo-button {
+
+    padding: 9px 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #374151;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.status {
+
+    margin-top: 6px;
+
+    font-size: 11px;
+
+    color: #6b7280;
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
+
+.product-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.product-image {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 64px;
+
+    height: 64px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #f3f4f6;
+
+    font-size: 30px;
+}
+
+
+.product-name {
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+.muted {
+
+    font-size: 12px;
+
+    color: #6b7280;
+}
+
+
+/* =========================
+   PRODUCT STATS
+========================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+
+.stat {
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: #f9fafb;
+}
+
+
+.stat span {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #6b7280;
+}
+
+
+.stat strong {
+
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   SECTION TITLES
+========================= */
+
+.section-title {
+
+    margin-bottom: 12px;
+
+    font-weight: 800;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   INPUT GRID
+========================= */
+
+.input-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+
+/* =========================
+   NOTES
+========================= */
+
+.note {
+
+    margin: 10px 0 0;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    color: #6b7280;
+}
+
+
+/* =========================
+   RESULT CARD
+========================= */
+
+.result-card {
+
+    margin-bottom: 12px;
+
+    padding: 16px;
+
+    background: #111827;
+
+    border-radius: 16px;
+
+    color: white;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,0.15);
+}
+
+
+.result-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.eyebrow {
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    color: #9ca3af;
+}
+
+
+.decision {
+
+    font-size: 30px;
+
+    font-weight: 900;
+}
+
+
+.decision.buy {
+
+    color: #86efac;
+}
+
+
+.decision.maybe {
+
+    color: #fde68a;
+}
+
+
+.decision.skip {
+
+    color: #fca5a5;
+}
+
+
+.deal-score {
+
+    display: grid;
+
+    place-items: center;
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    font-size: 20px;
+
+    font-weight: 900;
+}
+
+
+/* =========================
+   PROFIT NUMBERS
+========================= */
+
+.money-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+
+.money-grid div {
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.07);
+}
+
+
+.money-grid span {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #9ca3af;
+}
+
+
+.money-grid strong {
+
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   DECISION REASONS
+========================= */
+
+.reasons {
+
+    margin-top: 14px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    color: #d1d5db;
+}
+
+
+.reasons div {
+
+    padding: 5px 0;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-button {
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #111827;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   SAVED PRODUCTS
+========================= */
+
+.saved-products {
+
+    width: 100%;
+}
+
+
+.saved-product {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 12px 0;
+
+    border-top:
+        1px solid
+        #e5e7eb;
+}
+
+
+.saved-product:first-child {
+
+    border-top: none;
+}
+
+
+.saved-name {
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+
+.saved-details {
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: #6b7280;
+}
+
+
+.open-button {
+
+    padding: 7px 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+
+    z-index: 100;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    padding:
+        7px
+        8px
+        max(7px, env(safe-area-inset-bottom));
+
+    border-top:
+        1px solid
+        #e5e7eb;
+
+    background: white;
+}
+
+
+.nav-button {
+
+    border: none;
+
+    background: white;
+
+    color: #6b7280;
+
+    font-size: 19px;
+
+    cursor: pointer;
+}
+
+
+.nav-button span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 10px;
+}
+
+
+.nav-button.active {
+
+    color: #111827;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 700px) {
+
+    .container {
+
+        padding: 20px;
+    }
+
+
+    .card,
+    .result-card {
+
+        padding: 18px;
+    }
+
+
+    .primary-button {
+
+        width: 120px;
+    }
+
+}
